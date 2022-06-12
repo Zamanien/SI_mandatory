@@ -1,3 +1,4 @@
+import uuid
 import jwt
 from jwt.exceptions import InvalidSignatureError
 from bottle import request, response
@@ -42,3 +43,9 @@ def verify_token():
             "code": "invalid_signature",
             "description": "Token signature is not valid",
         }
+
+def generate_esb_token():
+    provider_id = uuid.uuid1()
+    token = jwt.encode({"provider_id": str(provider_id) }, "secret", algorithm="HS256")
+    print(token)
+    return token

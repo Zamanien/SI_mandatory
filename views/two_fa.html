@@ -63,12 +63,13 @@
       <script>
         async function login() {
           let form = document.querySelector("form");
-          let conn = await fetch("/2fa", {
+          response = await fetch("/2fa", {
             method: "POST",
             body: new FormData(form),
           });
-          if (conn.status == 200) {
-            window.location.replace("/secret_page");
+          if (response.status == 200) {
+            html = await response.text()
+            document.querySelector("html").innerHTML = html;
           } else {
             alert("Wrong code, please try again");
             window.location.replace("/");

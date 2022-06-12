@@ -1,7 +1,7 @@
-from bottle import request, response, view, run, static_file
+from bottle import request, response, view, run, template
 from dotenv import load_dotenv
 import os
-import jwt, bottle
+import bottle
 import auth
 import twofa
 import stub_cpr_registry
@@ -48,13 +48,15 @@ def _():
 
 ##############################
 @app.post("/2fa")
-@view("two_fa")
+@view("secret_page")
 def two_fa():
     email = request.forms["email"]
     code = request.forms["code"]
     print(email, code)
     if twofa.verify(email, code):
-        return
+        provider_token = auth.generate_esb_token()
+        return template("secret_page", provider_token=provider_token)
+        return dict(provider_token=provider_token)
     else:
         response.status = 403
         return {
@@ -66,13 +68,6 @@ def two_fa():
 ##############################
 @app.get("/2fa")
 @view("two_fa")
-def two_fa():
-    return
-
-
-##############################
-@app.get("/secret_page")
-@view("secret_page")
 def two_fa():
     return
 
