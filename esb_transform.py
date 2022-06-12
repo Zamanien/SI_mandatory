@@ -1,3 +1,4 @@
+from bottle import response
 import xmltodict
 from dicttoxml import dicttoxml
 import redis, json, uuid, time, calendar, csv, io
@@ -12,7 +13,8 @@ allowed_types = {
     # "text/tab-separated-values",
 }
 
-records_expiration = 120
+# expire after five minutes
+records_expiration = 300
 
 r = redis.Redis(
     host="localhost",
@@ -32,9 +34,11 @@ def delete_message(message_id, provider_id):
         r.delete(keys[0])
         return "deleted"
     elif len(keys) == 0:
+        response.status = 400
         return "No keys found"
     else:
-        return "more than one keys found"
+        response.status = 500
+        return "error: more than one keys found"
 
 
 def get_messages(topic, limit, type):
@@ -108,4 +112,5 @@ def save_message(body, type, topic, author):
     r.hset(key, "m", message)
     r.hset(key, "a", author)
     r.hset(key, "id", str(message_id))
+    r.expire(key, records_expiration)
     return str(message_id)

@@ -14,7 +14,6 @@ def _(topic, limit):
         return transform.get_messages(topic, limit, content_type)
 
     except Exception as ex:
-        raise
         response.status = 400
         return str(ex)
 
