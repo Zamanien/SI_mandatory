@@ -1,5 +1,13 @@
 from bottle import get, post, run, response, request
 import json, auth, esb_transform as transform
+import redis
+from datetime import datetime
+
+
+r = redis.Redis(
+    host="localhost", port=9000, db=0, password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81", charset="utf-8", decode_responses=True
+)
+
 
 # r.hset("user:12345", mapping={"id": "1", "email": "@a", "token": "12345"})
 # r.hset("user:67890", mapping={"id": "2", "email": "@b", "token": "67890"})
@@ -26,33 +34,45 @@ messages = [
 ]
 
 ############## THIS IS ABOUT READING MESSAGES
-@get("/provider/<id>/from/<last_message_id>/limit/<limit:int>")
-def _(id, last_message_id, limit):
+@get("/topic/<topic>/limit/<limit:int>")
+def _(topic, limit):
     auth.verify_token()
     response.content_type = "application/json"
     try:
-        # validation
+        #Validation
         if limit <= 0:
             raise Exception(f"limit cannot be {limit}")
-        start_index = -1
-        # for message in messages[id]:
-        #     print(message)
-        #     if message["id"] == last_message_id:
-        #         start_index = messages[id].index(message)
-        for i in range(len(messages[id])):
-            if last_message_id in messages[id][i].values():
-                start_index = i + 1
-                break
+        
+        #Get keys related to partial search of 'Topic'
+        keys = r.keys('*'+topic+'*')
+        #Validation
+        if keys == None:
+            raise Exception(f'No keys found with {topic}')
 
-        # validation that index exists
-        if start_index == -1:
-            raise Exception(f"no message with id {last_message_id}")
+        timestamps = {}
+        messages = {}
+        n = 0
+        #Loop thrigh keys and timestamps of those keys
+        for key in keys:
+            message = r.hgetall(key)
+            messages[n]=message
+            timestamps[n]=datetime.fromtimestamp(int(key[-10:]))
+            n+=1
+        
+        #Sort by timestamps & retrieve their keys
+        sorted_timestamps=list(dict(sorted(timestamps.items(),key= lambda x:x[1])).keys())
+        #index by custom limit (latest timestamps)
+        index_out = sorted_timestamps[-limit:]
 
-        # Handle response
-        return json.dumps(messages[id][start_index : limit + start_index])
+        #Dict comprehension -> return messages matching indexed keys
+        return {k:messages[k] for k in index_out}
+
+
     except Exception as ex:
         response.status = 400
         return str(ex)
+
+
 
 
 ############## THIS IS ABOUT WRITING MESSAGES

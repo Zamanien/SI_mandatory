@@ -12,7 +12,7 @@ allowed_types = {
 records_expiration = 120
 
 r = redis.Redis(
-    host="localhost", port=9000, db=0, password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81"
+    host="localhost", port=9000, db=0, password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81", charset="utf-8", decode_responses=True
 )
 
 
