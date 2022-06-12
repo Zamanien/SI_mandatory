@@ -1,4 +1,4 @@
-from bottle import get, post, run, response, request
+from bottle import get, post, delete, run, response, request
 import json, auth, esb_transform as transform
 
 ############## THIS IS ABOUT READING MESSAGES
@@ -22,14 +22,20 @@ def _(topic, limit):
 ############## THIS IS ABOUT WRITING MESSAGES
 @post("/topic/<topic>")
 def _(topic):
-    # todo: get the provider id from the token
     token_data = auth.verify_token()
     provider_id = token_data["provider_id"]
     print(provider_id)
     content_type = validate_content_type()
-    transform.save_message(
+    return transform.save_message(
         body=request.body, topic=topic, type=content_type, author=provider_id
     )
+
+
+@delete("/message/<message_id>")
+def _(message_id):
+    token_data = auth.verify_token()
+    provider_id = token_data["provider_id"]
+    return transform.delete_message(message_id, provider_id)
 
 
 def validate_content_type():

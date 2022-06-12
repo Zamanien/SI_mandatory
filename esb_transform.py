@@ -24,6 +24,19 @@ r = redis.Redis(
 )
 
 
+def delete_message(message_id, provider_id):
+    print(message_id)
+    print(provider_id)
+    keys = r.keys("provider:" + provider_id + "*/uid:" + message_id + "/timestamp*")
+    if len(keys) == 1:
+        r.delete(keys[0])
+        return "deleted"
+    elif len(keys) == 0:
+        return "No keys found"
+    else:
+        return "more than one keys found"
+
+
 def get_messages(topic, limit, type):
     # Get keys related to partial search of 'Topic'
     keys = r.keys("*/topic:" + topic + "/uid:*")
@@ -61,8 +74,8 @@ def get_messages(topic, limit, type):
     #     text_obj = byte_str.decode("UTF-8")
     #     rd = csv.reader(io.StringIO(text_obj), delimiter="\t", quotechar='"')
     #     print(rd[1])
-        # for row in rd:
-        #     print(row)
+    # for row in rd:
+    #     print(row)
     return
 
 
@@ -94,3 +107,5 @@ def save_message(body, type, topic, author):
 
     r.hset(key, "m", message)
     r.hset(key, "a", author)
+    r.hset(key, "id", str(message_id))
+    return str(message_id)
