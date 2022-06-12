@@ -5,7 +5,12 @@ from datetime import datetime
 
 
 r = redis.Redis(
-    host="localhost", port=9000, db=0, password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81", charset="utf-8", decode_responses=True
+    host="localhost",
+    port=9000,
+    db=0,
+    password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81",
+    charset="utf-8",
+    decode_responses=True,
 )
 
 
@@ -18,47 +23,48 @@ def _(topic, limit):
     auth.verify_token()
     response.content_type = "application/json"
     try:
-        #Validation
+        # Validation
         if limit <= 0:
             raise Exception(f"limit cannot be {limit}")
-        
-        #Get keys related to partial search of 'Topic'
-        keys = r.keys('*'+topic+'*')
-        #Validation
+
+        # Get keys related to partial search of 'Topic'
+        keys = r.keys("*" + topic + "*")
+        # Validation
         if keys == None:
-            raise Exception(f'No keys found with {topic}')
+            raise Exception(f"No keys found with {topic}")
 
         timestamps = {}
         messages = {}
         n = 0
-        #Loop thrigh keys and timestamps of those keys
+        # Loop thrigh keys and timestamps of those keys
         for key in keys:
             message = r.hgetall(key)
-            messages[n]=message
-            timestamps[n]=datetime.fromtimestamp(int(key[-10:]))
-            n+=1
-        
-        #Sort by timestamps & retrieve their keys
-        sorted_timestamps=list(dict(sorted(timestamps.items(),key= lambda x:x[1])).keys())
-        #index by custom limit (latest timestamps)
+            messages[n] = message
+            timestamps[n] = datetime.fromtimestamp(int(key[-10:]))
+            n += 1
+
+        # Sort by timestamps & retrieve their keys
+        sorted_timestamps = list(
+            dict(sorted(timestamps.items(), key=lambda x: x[1])).keys()
+        )
+        # index by custom limit (latest timestamps)
         index_out = sorted_timestamps[-limit:]
 
-        #Dict comprehension -> return messages matching indexed keys
-        return {k:messages[k] for k in index_out}
-
+        # Dict comprehension -> return messages matching indexed keys
+        return {k: messages[k] for k in index_out}
 
     except Exception as ex:
         response.status = 400
         return str(ex)
 
 
-
-
 ############## THIS IS ABOUT WRITING MESSAGES
-@post("/provider/<provider_id>/topic/<topic>")
-def _(provider_id, topic):
+@post("/topic/<topic>")
+def _(topic):
     # todo: get the provider id from the token
-    auth.verify_token()
+    token_data = auth.verify_token()
+    provider_id = token_data["provider_id"]
+    print(provider_id)
     content_type = request.headers.get("Content-Type", None)
     if content_type not in transform.allowed_types:
         response.status = 415

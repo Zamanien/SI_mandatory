@@ -1,5 +1,5 @@
 ###
-POST http://localhost:3000/provider/1/topic/gear
+POST http://localhost:3000/topic/gear
 Content-Type: application/json
 Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
 
@@ -8,7 +8,7 @@ Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6
 }
 
 ###
-POST http://localhost:3000/provider/1/topic/tomatoes
+POST http://localhost:3000/topic/tomatoes
 Content-Type: application/xml
 Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
 
@@ -17,7 +17,7 @@ some message
 </message>
 
 ###
-POST http://localhost:3000/provider/1/topic/tomatoes
+POST http://localhost:3000/topic/tomatoes
 Content-Type: application/x-yaml
 Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
 
@@ -25,7 +25,7 @@ message:
     "some message"
 
 ###
-POST http://localhost:3000/provider/1/topic/tomatoes
+POST http://localhost:3000/topic/tomatoes
 Content-Type: text/tab-separated-values
 Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
 
@@ -41,7 +41,7 @@ Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6
 ###
 
 
-GET http://localhost:3000/provider/1/from/204f3ebc-c7c0-4d78-a97b-0f3b582c3d84/limit/3
+GET http://localhost:3000/from/204f3ebc-c7c0-4d78-a97b-0f3b582c3d84/limit/3
 Content-Type: application/json
 Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
 
