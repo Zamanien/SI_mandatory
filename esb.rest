@@ -42,6 +42,11 @@ GET http://localhost:3000/topic/tomatoes/limit/4
 Content-Type: application/xml
 Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
 
+### GET
+GET http://localhost:3000/topic/tomatoes/limit/4
+Content-Type: application/x-yaml
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjM4MTE1ZTA4LWVhOTUtMTFlYy1hYTVhLTViZGVjN2VmM2I0OCJ9.k6BIqItVjxjYVUT_EXnP-pHkzJu_6R0UXUye22rmHzs 
+
 
 ### NOT WORKING YET
 GET http://localhost:3000/from/204f3ebc-c7c0-4d78-a97b-0f3b582c3d84/limit/3

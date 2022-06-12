@@ -9,7 +9,7 @@ allowed_types = {
     "application/json",
     "application/xml",
     "application/x-yaml",
-    "text/tab-separated-values",
+    # "text/tab-separated-values",
 }
 
 records_expiration = 120
@@ -46,16 +46,15 @@ def get_messages(topic, limit, type):
     # index by custom limit (latest timestamps)
     index_out = sorted_timestamps[-limit:]
     # Dict comprehension -> return messages matching indexed keys
-    sorted_messages = {k: messages[k] for k in index_out}
+    sorted_messages = {str(k): messages[k] for k in index_out}
 
     # Transform the messages
     if type == "application/json":
         return sorted_messages
     elif type == "application/xml":
-        return dicttoxml(sorted_messages,  attr_type=False)
+        return dicttoxml(sorted_messages)
     elif type == "application/x-yaml":
-        body_dict = yaml.safe_load(sorted_messages)
-        print(body_dict)
+        return yaml.dump(sorted_messages)
     # elif type == "text/tab-separated-values":
     #     body_dict = ""
     #     byte_str = body.read()
