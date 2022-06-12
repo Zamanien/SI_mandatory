@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/kimeiga/bahunya/css/bahunya-0.1.3.css"
+    />
+    <style type="text/css">
+      body {
+        background-color: white;
+      }
+    </style>
+    <title>My EBS AUTH</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <h1><a href="/">Sign Up flow for My EBS system</a></h1>
+      </nav>
+    </header>
+
+    <main>
+      <iframe src="{{mitid_url}}" height="510"></iframe>
+    </main>
+    <script
+      src="https://unpkg.com/htmx.org@1.5.0"
+      integrity="sha384-oGA+prIp5Vchu6we2YkI51UtVzN9Jpx2Z7PnR1I78PnZlN8LkrCT4lqqqmDkyrvI"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.addEventListener("message", async (event) => {
+        jwt_token = event.data;
+        console.log(jwt_token);
+        let headers = { "Content-Type": "application/json" };
+        if (jwt_token) {
+          headers["Authorization"] = `Bearer ${jwt_token}`;
+        }
+        let conn = await fetch("/validate", {
+          method: "POST",
+          headers,
+        });
+        if (conn.status == 200) {
+          window.location.replace("/2fa");
+        } else {
+          alert("Authentication Error, try again");
+          window.location.replace("/");
+        }
+      });
+    </script>
+  </body>
+</html>

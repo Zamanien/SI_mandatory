@@ -1,0 +1,55 @@
+###
+POST http://127.0.0.1:3333/validate
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjcHIiOiIyMjEwODUtNDA3OSIsImlhdCI6IjE2NTI4NjgxMjMiLCJleHAiOiIxNjUyODY4NzIzIn0.fu_kARRWjVcXVufm3Ua9Gi2GKD2HtED5kDAA9k1WOTY
+
+###
+POST https://fatsms.com/api-sign-up HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+email=satestastos@gmail.com&phone=71587288&password=12345678
+
+### RESPONSE
+# {
+#   "email": "sagelastos@gmail.com",
+#   "user_id": "0ad4c794-f279-492c-ad3a-a4e9276c7b9c",
+# }
+
+### 
+POST https://fatsms.com/api-log-in HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+
+email=sagelastos@gmail.com&password=12345678
+
+#### FIRST TIME RESPONSE
+# {
+#   "info": "user not verified",
+#   "how_to_get_verified": "From the mobile number used to signup, send a SMS to +45 21 28 04 41 with the word Fatsms. Once the SMS is sent, give us a couple of minutes to activate your account and then try to login again"
+# }
+
+###
+PUT http://127.0.0.1:3333/items/1
+Content-Type: application/json
+
+{
+    "name": "new_value",
+    "last_name": "xxx"
+}
+
+###
+PUT http://127.0.0.1:3333/items/1
+Content-Type: application/json
+
+{
+    "last_name": "another_new_value"
+}
+
+###
+DELETE http://127.0.0.1:3333/items/1
+
+###
+POST http://127.0.0.1:3333/items
+Content-Type: application/json
+
+{
+    "name": "alice"
+}
