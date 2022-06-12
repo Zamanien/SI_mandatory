@@ -9,6 +9,7 @@ jwt_secret=
 algorithm=
 sender_email=
 receiver_email=
-password=
+sender_password=
 port=
+mitid_url=
 ```

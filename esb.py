@@ -12,27 +12,6 @@ r = redis.Redis(
 # r.hset("user:12345", mapping={"id": "1", "email": "@a", "token": "12345"})
 # r.hset("user:67890", mapping={"id": "2", "email": "@b", "token": "67890"})
 
-messages = [
-    {
-        "f768ff7c-893f-48be-8afc-837ff2390f38/recipies/french tomatoes/1654964418": {
-            "c": "Prepare this , cook that hwatever",
-            "a": "service a",
-        }
-    },
-    {
-        "f768ff7c-893f-48be-8afc-837ff2390f38/shows/french tomatoes/1654964418": {
-            "c": "Prepare this , cook that hwatever",
-            "a": "service a",
-        }
-    },
-    {
-        "f768ff7c-893f-48be-8afc-837ff2390f38/animals/french tomatoes/1654964418": {
-            "c": "Prepare this , cook that hwatever",
-            "a": "service a",
-        }
-    },
-]
-
 ############## THIS IS ABOUT READING MESSAGES
 @get("/topic/<topic>/limit/<limit:int>")
 def _(topic, limit):
