@@ -3,6 +3,7 @@
 ### Prerequisites:
 - Docker & Docker-compose
 - Python3 & VENV
+- Cloned the repo
 
 On ubuntu run `bash run.sh`
 
