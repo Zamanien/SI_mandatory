@@ -33,7 +33,7 @@ def delete_message(message_id, provider_id):
         r.delete(keys[0])
         return "deleted"
     elif len(keys) == 0:
-        response.status = 400
+        response.status = 404
         return "No keys found"
     else:
         response.status = 500
