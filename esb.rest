@@ -1,7 +1,7 @@
 ### POST JSON
 POST http://localhost:3000/topic/gear
 Content-Type: application/json
-Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjY4YTVkZDRhLWViYjMtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.1UhC-h742vxGBpJuhEZgKKx1TB5_njLcDbAXto70co0 
+Authorization: Bearer   eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU  
 
 {
     "message": "some keys"
@@ -10,7 +10,7 @@ Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6
 ### POST XML
 POST http://localhost:3000/topic/tomatoes
 Content-Type: application/xml
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU
 
 <message>
 some new message
@@ -19,7 +19,7 @@ some new message
 ### POST YML
 POST http://localhost:3000/topic/tomatoes
 Content-Type: application/x-yaml
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 message:
     "some message"
@@ -28,36 +28,36 @@ message:
 
 ### DELETE
 DELETE http://localhost:3000/message/a5b76636-ebb3-11ec-9728-034e00983a05
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 ###############
 
 ### GET JSON
 GET http://localhost:3000/topic/gear/limit/9
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 ### GET XML
 GET http://localhost:3000/topic/tomatoes/limit/7
 Content-Type: application/xml
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 ### GET YML
 GET http://localhost:3000/topic/tomatoes/limit/4
 Content-Type: application/x-yaml
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 ###########################################################################
 
 ### NOT WORKING YET
 GET http://localhost:3000/from/204f3ebc-c7c0-4d78-a97b-0f3b582c3d84/limit/3
 Content-Type: application/json
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 ###
 POST http://localhost:3000/topic/tomatoes
 Content-Type: text/tab-separated-values
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6ImRiYjVmYWNhLWViYWItMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.X8WdIAC6-tup8adgcn15Dc7Ua-3ZByIFWKv6PxGGXmU  
+Authorization: Bearer  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwcm92aWRlcl9pZCI6IjBjYzE3M2E0LWViZDYtMTFlYy05NzI4LTAzNGUwMDk4M2EwNSJ9.zROySXv_kJRsH1hKxaThms2nwbUMHlUubrfVWV-YRoU 
 
 message
 some message
