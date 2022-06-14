@@ -105,4 +105,5 @@ def save_message(body, type, topic, author):
     r.hset(key, "a", author)
     r.hset(key, "id", str(message_id))
     r.expire(key, records_expiration)
+    response.status = 201
     return str(message_id)

@@ -51,9 +51,5 @@ def validate_content_type():
         }
     return content_type
 
-
-# message =
-
-
 ##############
 run(host="127.0.0.1", port=3000, debug=True, reloader=True)
