@@ -35,9 +35,6 @@ def index():
 def _():
     data = auth.verify_token()
     cpr = data["cpr"]
-    print(cpr)
-
-    # TODO generate 4 digit code, send email and save email - code pair in DB
     email = stub_cpr_registry.find_email(cpr)
     twofa.generate_save_send(email=email)
     return

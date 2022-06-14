@@ -4,8 +4,8 @@ services:
     image: redis:6.2-alpine
     restart: always
     ports:
-      - '9000:6379'
-    command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
+      - '${redis_port}:6379'
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${redis_pass}
     volumes:
       - cache:/data
 volumes:

@@ -1,13 +1,19 @@
-import redis
-import random
-import stub_send_email
+import redis, os, random, stub_send_email
 
 
 records_expiration = 120
 
 
+redis_port = os.environ.get("redis_port")
+redis_pass = os.environ.get("redis_pass")
+
 r = redis.Redis(
-    host="localhost", port=9000, db=0, password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81"
+    host="localhost",
+    port=redis_port,
+    db=0,
+    password=redis_pass,
+    charset="utf-8",
+    decode_responses=True,
 )
 
 
@@ -21,7 +27,7 @@ def generate_save_send(email):
 
 
 def verify(email, code):
-    db_code = r.get(email).decode()
+    db_code = r.get(email)
     if code == db_code:
         r.delete(email)
         return True

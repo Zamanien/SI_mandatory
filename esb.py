@@ -1,5 +1,10 @@
+from dotenv import load_dotenv
+
+# load env file
+load_dotenv()
+
 from bottle import get, post, delete, run, response, request
-import json, auth, esb_transform as transform
+import auth, esb_transform as transform
 
 ############## THIS IS ABOUT READING MESSAGES
 @get("/topic/<topic>/limit/<limit:int>")
@@ -23,7 +28,6 @@ def _(topic, limit):
 def _(topic):
     token_data = auth.verify_token()
     provider_id = token_data["provider_id"]
-    print(provider_id)
     content_type = validate_content_type()
     return transform.save_message(
         body=request.body, topic=topic, type=content_type, author=provider_id

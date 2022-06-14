@@ -1,8 +1,6 @@
+import redis, json, uuid, time, calendar, csv, io, os, yaml, xmltodict
 from bottle import response
-import xmltodict
 from dicttoxml import dicttoxml
-import redis, json, uuid, time, calendar, csv, io
-import yaml
 from datetime import datetime
 
 
@@ -16,19 +14,20 @@ allowed_types = {
 # expire after five minutes
 records_expiration = 300
 
+redis_port = os.environ.get("redis_port")
+redis_pass = os.environ.get("redis_pass")
+
 r = redis.Redis(
     host="localhost",
-    port=9000,
+    port=redis_port,
     db=0,
-    password="eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81",
+    password=redis_pass,
     charset="utf-8",
     decode_responses=True,
 )
 
 
 def delete_message(message_id, provider_id):
-    print(message_id)
-    print(provider_id)
     keys = r.keys("provider:" + provider_id + "*/uid:" + message_id + "/timestamp*")
     if len(keys) == 1:
         r.delete(keys[0])
@@ -90,15 +89,8 @@ def save_message(body, type, topic, author):
         body_dict = xmltodict.parse(body)
     elif type == "application/x-yaml":
         body_dict = yaml.safe_load(body)
-        print(body_dict)
     elif type == "text/tab-separated-values":
         body_dict = ""
-        byte_str = body.read()
-        text_obj = byte_str.decode("UTF-8")
-        rd = csv.reader(io.StringIO(text_obj), delimiter="\t", quotechar='"')
-        print(rd[1])
-        # for row in rd:
-        #     print(row)
 
     message = body_dict["message"]
 
