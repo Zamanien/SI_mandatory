@@ -1,13 +1,12 @@
 #   https://realpython.com/python-send-email/
 
-import smtplib, ssl
-import random, os
+import smtplib, ssl, os
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from dotenv import load_dotenv
 
 stub_sender_email = os.environ.get("sender_email")
 stub_password = os.environ.get("sender_password")
+
 
 def send_email(receiver_email, random_auth_code):
     message = MIMEMultipart("alternative")

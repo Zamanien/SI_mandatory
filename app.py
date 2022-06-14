@@ -1,20 +1,17 @@
-from bottle import request, response, view, run, template
 from dotenv import load_dotenv
+
+# load env file
+load_dotenv()
+
+from bottle import request, response, view, run, template
 import os
 import bottle
 import auth
 import twofa
 import stub_cpr_registry
-from jwt.exceptions import InvalidSignatureError
 
 # READ ENV VARS
-load_dotenv()
 mitid_url = os.environ.get("mitid_url")
-jwt_secret = os.environ.get("jwt_secret")
-algorithm = os.environ.get("algorithm")
-sender_email = os.environ.get("sender_email")
-receiver_email = os.environ.get("receiver_email")
-password = os.environ.get("password")
 port = os.environ.get("port")
 
 app = bottle.Bottle()
@@ -48,7 +45,6 @@ def _():
 
 ##############################
 @app.post("/2fa")
-@view("secret_page")
 def two_fa():
     email = request.forms["email"]
     code = request.forms["code"]
@@ -56,7 +52,6 @@ def two_fa():
     if twofa.verify(email, code):
         provider_token = auth.generate_esb_token()
         return template("secret_page", provider_token=provider_token)
-        return dict(provider_token=provider_token)
     else:
         response.status = 403
         return {
